@@ -1,7 +1,6 @@
 // returns which button was pressed: 0 for set, 1 for rollback, 2 for reset
 // if nothing was pressed returns -1
 int BtnPressDetect(){
-
   int BtnIndex = -1;
 
   lastBtnSetState = btnSetState;
@@ -31,5 +30,35 @@ int BtnPressDetect(){
 
   // output
   return BtnIndex;
+}
+
+
+
+// waits for user to press a button and shows a message
+// parameters are: message to show and current state
+// to be used
+void WaitForInput(String message, int state)
+{
+  if(bInd != -1)
+      {
+        pauseInd = 0;
+        //0 for set, 1 for rollback, 2 for reset
+        switch(bInd)
+        {
+          case 0:
+            // wait for an input once more
+            sysStatus = state+1;
+            break;
+          case 1: 
+            sysStatus = state;
+            break;
+          case 2: 
+            sysStatus = 0;
+            notifNr = 0;
+            break;
+          
+        }
+        
+      }
 }
 
