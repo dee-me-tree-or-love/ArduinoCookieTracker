@@ -21,6 +21,9 @@ float emptySize;  //Size (distance to the first obstacle) of an empty jar in cm 
 float cookieSize;  //Size (distance to the first obstacle) of a cookie in cm
 float fullSize;  //Size (distance to the first obstacle) of a full jar in cm
 float curSize;  //Size (distance to the first obstacle) of a jar with some cookies in cm
+float numFullCookies; //number of cookies total
+float numPrevCookies; //number of cookies at the last check
+float numCurCookies; //number of cookies current check
 const float SPOSOUND = 0.0346; //Speed of sound in cm/ms
 
 // BTN states:
@@ -83,10 +86,15 @@ void loop() {
 
     // full stack  
     case 3:
+      Group3Meth();
       break;
 
     // changing numcookies  
     case 4:
+    //
+    Serial.println("To Be DONE");
+    Serial.println("+_+_+_+_+_+_+");
+    //
       break;
   }
 
