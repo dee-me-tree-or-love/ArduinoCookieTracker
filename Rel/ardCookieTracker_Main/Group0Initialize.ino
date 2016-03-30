@@ -8,6 +8,9 @@ void Group0Meth()
         fullSize = 0;  
         curSize = 0;  
         myServo.write(0);
+        // Instructions
+        Serial.print("Press SET to start.");
+        Serial.print("First measure the size of an empty jar.");
   if(BtnPressDetect() != -1)
       {
         //0 for set, 1 for rollback, 2 for reset

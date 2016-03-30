@@ -1,5 +1,6 @@
 #include <Servo.h>
 
+// put the servo with vvc pin to the position 50 on breadboard
 const int TRIGPIN = 13; //the pin for the US trigger connection - white mother jumper green father jumper
 // trigger is input
 const int ECHOPIN = 12; //the pin for the US echo connection - orange mother jumper yellow father jumper
