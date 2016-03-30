@@ -1,10 +1,17 @@
-void Group4Meth()
+void Group6Meth()
 {
 
 
   // to do
+
+  if(pauseInd == 0)
+  {
+    Serial.print("TO BE DONE !!!!!");
+    pauseInd = 1;
+  }
+  
   int bInd = BtnPressDetect();   
-  if(bInd != -1 && cookieSize != 0)
+  if(bInd != -1)
       {
         pauseInd = 0; // something was pressed, thus read again
         //0 for set, 1 for rollback, 2 for reset

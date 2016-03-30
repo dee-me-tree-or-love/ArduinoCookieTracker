@@ -22,30 +22,7 @@ void Group1Meth()
     Serial.println("*******");
     pauseInd = 1;
   }
-  int bInd = BtnPressDetect();
-  
-     
-  if(bInd != -1)
-      {
-        pauseInd = 0;
-        //0 for set, 1 for rollback, 2 for reset
-        switch(bInd)
-        {
-          case 0:
-            // wait for an input once more
-            sysStatus = 2;
-            break;
-          case 1: 
-            sysStatus = 1;
-            break;
-          case 2: 
-            sysStatus = 0;
-            notifNr = 0;
-            break;
-          
-        }
-        
-      }
+  WaitForInput(sysStatus);
 }
 
 

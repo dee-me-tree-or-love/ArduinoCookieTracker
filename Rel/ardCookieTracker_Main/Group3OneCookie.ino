@@ -1,5 +1,5 @@
-// one cookie state, sysStatus = 5, machine gets the size of a cookie
-void Group2Meth()
+// one cookie state, sysStatus = 3, machine gets the size of a cookie
+void Group3Meth()
 {
   delay(150);
   if(pauseInd == 0)
@@ -23,26 +23,27 @@ void Group2Meth()
     
     pauseInd = 1;
   }
-  int bInd = BtnPressDetect();   
-  if(bInd != -1 && cookieSize != 0)
-      {
-        pauseInd = 0; // something was pressed, thus read again
-        //0 for set, 1 for rollback, 2 for reset
-        switch(bInd)
-        {
-          case 0:
-            sysStatus = 6;
-            break;
-          case 1: 
-            sysStatus = 5;
-            break;
-          case 2: 
-            sysStatus = 0;
-            notifNr = 0;
-            break;
-          
-        }
-        
-      }
+  WaitForInput(sysStatus);
+//  int bInd = BtnPressDetect();   
+//  if(bInd != -1 && cookieSize != 0)
+//      {
+//        pauseInd = 0; // something was pressed, thus read again
+//        //0 for set, 1 for rollback, 2 for reset
+//        switch(bInd)
+//        {
+//          case 0:
+//            sysStatus = 6;
+//            break;
+//          case 1: 
+//            sysStatus = 5;
+//            break;
+//          case 2: 
+//            sysStatus = 0;
+//            notifNr = 0;
+//            break;
+//          
+//        }
+//        
+//      }
     
 }

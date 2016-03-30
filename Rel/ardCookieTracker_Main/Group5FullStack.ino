@@ -1,5 +1,5 @@
-// ej state, sysStatus = 3, machine gets the size of a full jar
-void Group3Meth()
+// ej state, sysStatus = 5, machine gets the size of a full jar
+void Group5Meth()
 {
   delay(150);
   if(pauseInd == 0)
@@ -28,28 +28,6 @@ void Group3Meth()
     Serial.println("*******");
     pauseInd = 1;
   }
-  int bInd = BtnPressDetect();
- 
-       
-  if(bInd != -1)
-      {
-        pauseInd = 0;
-        //0 for set, 1 for rollback, 2 for reset
-        switch(bInd)
-        {
-          case 0:
-            sysStatus = 4;
-            break;
-          case 1: 
-            sysStatus = 3;
-            break;
-          case 2: 
-            sysStatus = 0;
-            notifNr = 0;
-            break;
-          
-        }
-        
-      }
+   WaitForInput(sysStatus);
       
 }

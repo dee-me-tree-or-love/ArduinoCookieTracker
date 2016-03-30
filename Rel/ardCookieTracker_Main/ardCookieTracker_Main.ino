@@ -44,7 +44,7 @@ int sysStatus = 0; // current process group
                    // 4 - read updated info
 
 int notifNr = 0; // to calculate the number of notifications given by the machine
-int pauseInd = 0; // if it is 0 wait for input
+int pauseInd = 0; // if it is 1 wait for input
 //END VAR DECLARATION
 
 void setup() {
@@ -79,24 +79,28 @@ void loop() {
     case 1:
       Group1Meth();
       break;
+    // wait
     case 2:
+      Group2Meth();
       break;
     // one cookie  
     case 3:
-      Group2Meth();
+      Group3Meth();
       break;
+    // wait
     case 4:
+      Group4Meth();
       break;
     // full stack  
     case 5:
-      Group3Meth();
+      Group5Meth();
       break;
 
     // changing numcookies  
     case 6:
-    //
-    Serial.println("To Be DONE");
-    Serial.println("+_+_+_+_+_+_+");
+    // to be done
+    
+    Group6Meth();
     //
       break;
   }
