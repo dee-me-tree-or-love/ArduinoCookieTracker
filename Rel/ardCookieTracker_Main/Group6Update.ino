@@ -7,7 +7,7 @@ void Group6Meth()
   delay(150);
   if(pauseInd == 0 )
   {
-    if(numCurCookies > 0 )
+    if(numCurCookies >= 1 )
     {
       numPrevCookies = numCurCookies;
       
@@ -63,7 +63,7 @@ void Group6Meth()
       }
       if(numCurCookies!=0)
       {
-        Serial.println("Press button SET/RB to take more");
+        Serial.println("Press button SET/RB if you have taken more, RESET to finish eating for today");
       }
       else
       {
@@ -96,9 +96,9 @@ void Group6Meth()
             Serial.print("Sir, you have eaten: ");
             Serial.print(cookieIntake);
             Serial.println(" this time.");
-            for(int i = 0; i<cookieIntake; i++)
+            for(int i = 0; i< cookieIntake - 1 ; i++)
             {
-              Serial.print("*");
+              Serial.print("O ");
             }
             Serial.println("");
             Serial.println("That's that many! Consider switching to a healthier lifestyle");

@@ -25,10 +25,10 @@ void Group5Meth()
     Serial.print(" cm.");
     Serial.println("");
     Serial.print("Servo position is: ");
-    Serial.print(getServoPos(numCurCookies));
+    Serial.println(getServoPos(numCurCookies));
     Serial.print("The number of cookies is: ");
     Serial.print(numFullCookies);
-    Serial.print(".");
+    Serial.println(".");
     Serial.println("Press button SET if it's okay");
     Serial.println("Relocate the sensor and press RB if not");
     Serial.println("*******");

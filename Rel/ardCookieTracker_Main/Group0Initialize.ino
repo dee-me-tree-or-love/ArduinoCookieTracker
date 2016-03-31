@@ -14,9 +14,9 @@ void Group0Meth()
         numCurCookies = 0; //number of cookies current check
         numTakeCookies = 0; // number of taken cookies
         cookieIntake = 0;
-        if(myServo.read()!= 0)
+        if(myServo.read()!= 5)
         {
-          myServo.write(0);
+          myServo.write(5);
         }
         // Instructions
         if(notifNr==0)
