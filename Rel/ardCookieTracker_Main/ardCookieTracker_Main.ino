@@ -6,14 +6,18 @@ const int TRIGPIN = 13; //the pin for the US trigger connection - white mother j
 const int ECHOPIN = 12; //the pin for the US echo connection - orange mother jumper yellow father jumper
 // echo is output
 const int SERVOINDPIN = 9; // to control the indicator servo (empty-full) - yellow jumper
+const int SERVOLOCKPIN = 10; // to control the lock servo (if eaten more then allowed to) - white jumper
+
 
 const int BTNSETPIN = 2; // used to continue; green jumper - right
 const int BTNRBPIN = 4; // used to cancle; blue jumper - middle
 const int BTNRESETPIN = 7; // used to finish/restart; yellow jumper - left
 
 
-// thus it will vary from 0 to 180deg with 0cookies to FS of cookies respectively
+// thus it will vary from 15 to 165deg with 0cookies to FS of cookies respectively
 Servo myServo;
+Servo myServoLock;
+
 
 // variables to be used for calculations
 float duration;  //time for ping to travel from sensor to target and return
@@ -25,6 +29,8 @@ float curSize;  //Size (distance to the first obstacle) of a jar with some cooki
 float numFullCookies; //number of cookies total
 float numPrevCookies; //number of cookies at the last check
 float numCurCookies; //number of cookies current check
+float numTakeCookies; // number of taken cookies
+float cookieIntake; // number of cookies eaten during the session
 const float SPOSOUND = 0.0346; //Speed of sound in cm/ms
 
 // BTN states:
@@ -43,8 +49,20 @@ int sysStatus = 0; // current process group
                    // 3 - get full stack
                    // 4 - read updated info
 
+// notifications and pauses
 int notifNr = 0; // to calculate the number of notifications given by the machine
 int pauseInd = 0; // if it is 1 wait for input
+int waitForPls = 0; // wait for the user to say please
+
+// message recieving
+int incomingByte = 0;   // for incoming serial data
+String receivedMessage = "";
+bool sharpRecd = false;
+bool mesGet = false;                
+
+
+
+
 //END VAR DECLARATION
 
 void setup() {
@@ -55,6 +73,8 @@ void setup() {
   myServo.attach(SERVOINDPIN);
   pinMode(TRIGPIN, OUTPUT);
   pinMode(ECHOPIN, INPUT);
+  myServoLock.attach(SERVOLOCKPIN);
+
   
   myServo.write(0);
   pinMode(BTNSETPIN,INPUT);    // set btn input

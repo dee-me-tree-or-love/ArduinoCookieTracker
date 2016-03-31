@@ -8,6 +8,12 @@ void Group0Meth()
         cookieSize = 0;  
         fullSize = 0;  
         curSize = 0;  
+        cookieIntake = 0;
+        numFullCookies = 0; //number of cookies total
+        numPrevCookies = 0; //number of cookies at the last check
+        numCurCookies = 0; //number of cookies current check
+        numTakeCookies = 0; // number of taken cookies
+        cookieIntake = 0;
         if(myServo.read()!= 0)
         {
           myServo.write(0);
@@ -15,11 +21,11 @@ void Group0Meth()
         // Instructions
         if(notifNr==0)
         {
-          Serial.print("Press SET to start. ");
-          Serial.print("First measure the size of an empty jar. ");
-          Serial.print("Then measure the size of a jar with one cookie. ");
-          Serial.print("Then measure the size of a jar full of cookies. ");
-          Serial.println("");
+          Serial.println("Hello.");
+          Serial.println("First measure the size of an empty jar. ");
+          Serial.println("Then measure the size of a jar with one cookie. ");
+          Serial.println("Then measure the size of a jar full of cookies. ");
+          Serial.println("Press SET to start");
           Serial.println("*******");
           notifNr++;
         }

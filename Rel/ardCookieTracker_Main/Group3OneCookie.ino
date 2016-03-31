@@ -19,6 +19,7 @@ void Group3Meth()
     Serial.print(" cm.");
     Serial.println("");
     Serial.println("Press button SET if it's okay");
+    Serial.println("Relocate the sensor and press RB if not");
     Serial.println("*******");
     
     pauseInd = 1;
