@@ -6,6 +6,7 @@ const int TRIGPIN = 13; //the pin for the US trigger connection - white mother j
 const int ECHOPIN = 12; //the pin for the US echo connection - orange mother jumper yellow father jumper
 // echo is output
 const int SERVOINDPIN = 9; // to control the indicator servo (empty-full) - yellow jumper
+const int SERVOLOCKPIN = 10;
 
 const int BTNSETPIN = 2; // used to continue; green jumper - right
 const int BTNRBPIN = 4; // used to cancle; blue jumper - middle
@@ -14,6 +15,9 @@ const int BTNRESETPIN = 7; // used to finish/restart; yellow jumper - left
 
 // thus it will vary from 15 to 165deg with 0cookies to FS of cookies respectively
 Servo myServo;
+Servo myServoLock;
+
+
 
 // variables to be used for calculations
 float duration;  //time for ping to travel from sensor to target and return
@@ -55,9 +59,11 @@ void setup() {
   Serial.begin(9600);
                       // set up the connections
   myServo.attach(SERVOINDPIN);
+  myServoLock.attach(SERVOLOCKPIN);
   pinMode(TRIGPIN, OUTPUT);
   pinMode(ECHOPIN, INPUT);
-  
+
+  myServoLock.write(0);
   myServo.write(0);
   pinMode(BTNSETPIN,INPUT);    // set btn input
   pinMode(BTNRBPIN,INPUT);     // set btn input
@@ -74,27 +80,33 @@ void loop() {
   {
     // init
     case 0:
+      myServoLock.write(0);
       Group0Meth(); // gets this method from a tab
       break;
 
     // empty jar  
     case 1:
+      myServoLock.write(90);
       Group1Meth();
       break;
     // wait
     case 2:
+      myServoLock.write(0);
       Group2Meth();
       break;
     // one cookie  
     case 3:
+      myServoLock.write(90);
       Group3Meth();
       break;
     // wait
     case 4:
+      myServoLock.write(0);
       Group4Meth();
       break;
     // full stack  
     case 5:
+      myServoLock.write(90);
       Group5Meth();
       break;
 
