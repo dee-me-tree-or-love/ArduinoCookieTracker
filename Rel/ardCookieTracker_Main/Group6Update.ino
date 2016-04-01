@@ -33,9 +33,6 @@ void Group6Meth()
       Serial.print(curSize);
       Serial.print(" cm.");
       Serial.println("");
-      Serial.print("Servo position is: ");
-      Serial.print(getServoPos(numCurCookies));
-      Serial.println("");
       
       Serial.print("The number of cookies is: ");
       Serial.println(numCurCookies);
@@ -49,6 +46,10 @@ void Group6Meth()
          Serial.print("You have put: ");
          Serial.print(numTakeCookies);
         Serial.print(" cookies.");
+        if(numCurCookies>numFullCookies)
+        {
+          numFullCookies = numCurCookies;
+        }
       }
       else
       {
@@ -61,7 +62,10 @@ void Group6Meth()
           Serial.println("Sir, you are on a diet...");
         }
       }
-      if(numCurCookies!=0)
+          Serial.print("Servo position is: ");
+      Serial.print(getServoPos(numCurCookies));
+      Serial.println("");
+      if(numCurCookies>=1)
       {
         Serial.println("Press button SET/RB if you have taken more, RESET to finish eating for today");
       }
