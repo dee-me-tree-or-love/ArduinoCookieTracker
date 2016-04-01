@@ -18,6 +18,11 @@ Servo myServo;
 Servo myServoLock;
 
 
+int incomingByte = 0;   // for incoming serial data
+String receivedMessage = "";
+bool sharpRecd = false;
+bool mesGet = false;
+
 
 // variables to be used for calculations
 float duration;  //time for ping to travel from sensor to target and return
@@ -51,6 +56,7 @@ int sysStatus = 0; // current process group
 
 int notifNr = 0; // to calculate the number of notifications given by the machine
 int pauseInd = 0; // if it is 1 wait for input
+int waitForPls = 0;
 //END VAR DECLARATION
 
 void setup() {
@@ -76,37 +82,63 @@ void setup() {
 
 void loop() {
   // Get in what process group to be:
+  int x= 0;
   switch(sysStatus)
   {
     // init
     case 0:
-      myServoLock.write(0);
+      x= 5;
+      if(myServoLock.read()!=x)
+      {
+        myServoLock.write(x);
+      }
+      
       Group0Meth(); // gets this method from a tab
       break;
 
     // empty jar  
     case 1:
-      myServoLock.write(90);
+      x = 90;
+      if(myServoLock.read()!=x)
+      {
+        myServoLock.write(x);
+      }
       Group1Meth();
       break;
     // wait
     case 2:
-      myServoLock.write(0);
+      x = 5;
+      if(myServoLock.read()!=x)
+      {
+        myServoLock.write(x);
+      }
       Group2Meth();
       break;
     // one cookie  
     case 3:
-      myServoLock.write(90);
+      x = 90;
+      if(myServoLock.read()!=x)
+      {
+        myServoLock.write(x);
+      }
       Group3Meth();
       break;
     // wait
     case 4:
-      myServoLock.write(0);
+      x = 5;
+      if(myServoLock.read()!=x)
+      {
+        myServoLock.write(x);
+      }
       Group4Meth();
       break;
     // full stack  
     case 5:
-      myServoLock.write(90);
+      x = 90;
+      if(myServoLock.read()!=x)
+      {
+        myServoLock.write(x);
+      }
       Group5Meth();
       break;
 
