@@ -6,6 +6,7 @@ const int TRIGPIN = 13; //the pin for the US trigger connection - white mother j
 const int ECHOPIN = 12; //the pin for the US echo connection - orange mother jumper yellow father jumper
 // echo is output
 const int SERVOINDPIN = 9; // to control the indicator servo (empty-full) - yellow jumper
+const int SERVOLOCKPIN = 10;
 
 const int BTNSETPIN = 2; // used to continue; green jumper - right
 const int BTNRBPIN = 4; // used to cancle; blue jumper - middle
@@ -14,6 +15,14 @@ const int BTNRESETPIN = 7; // used to finish/restart; yellow jumper - left
 
 // thus it will vary from 15 to 165deg with 0cookies to FS of cookies respectively
 Servo myServo;
+Servo myServoLock;
+
+
+int incomingByte = 0;   // for incoming serial data
+String receivedMessage = "";
+bool sharpRecd = false;
+bool mesGet = false;
+
 
 // variables to be used for calculations
 float duration;  //time for ping to travel from sensor to target and return
@@ -47,6 +56,7 @@ int sysStatus = 0; // current process group
 
 int notifNr = 0; // to calculate the number of notifications given by the machine
 int pauseInd = 0; // if it is 1 wait for input
+int waitForPls = 0;
 //END VAR DECLARATION
 
 void setup() {
@@ -55,9 +65,11 @@ void setup() {
   Serial.begin(9600);
                       // set up the connections
   myServo.attach(SERVOINDPIN);
+  myServoLock.attach(SERVOLOCKPIN);
   pinMode(TRIGPIN, OUTPUT);
   pinMode(ECHOPIN, INPUT);
-  
+
+  myServoLock.write(0);
   myServo.write(0);
   pinMode(BTNSETPIN,INPUT);    // set btn input
   pinMode(BTNRBPIN,INPUT);     // set btn input
@@ -70,31 +82,63 @@ void setup() {
 
 void loop() {
   // Get in what process group to be:
+  int x= 0;
   switch(sysStatus)
   {
     // init
     case 0:
+      x= 5;
+      if(myServoLock.read()!=x)
+      {
+        myServoLock.write(x);
+      }
+      
       Group0Meth(); // gets this method from a tab
       break;
 
     // empty jar  
     case 1:
+      x = 90;
+      if(myServoLock.read()!=x)
+      {
+        myServoLock.write(x);
+      }
       Group1Meth();
       break;
     // wait
     case 2:
+      x = 5;
+      if(myServoLock.read()!=x)
+      {
+        myServoLock.write(x);
+      }
       Group2Meth();
       break;
     // one cookie  
     case 3:
+      x = 90;
+      if(myServoLock.read()!=x)
+      {
+        myServoLock.write(x);
+      }
       Group3Meth();
       break;
     // wait
     case 4:
+      x = 5;
+      if(myServoLock.read()!=x)
+      {
+        myServoLock.write(x);
+      }
       Group4Meth();
       break;
     // full stack  
     case 5:
+      x = 90;
+      if(myServoLock.read()!=x)
+      {
+        myServoLock.write(x);
+      }
       Group5Meth();
       break;
 

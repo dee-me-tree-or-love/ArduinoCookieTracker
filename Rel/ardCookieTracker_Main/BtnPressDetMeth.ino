@@ -40,10 +40,33 @@ int BtnPressDetect(){
 void WaitForInput(int state)
 {
   int bInd = BtnPressDetect();
-  if(state == 3 && cookieSize<=0)
+  if(state == 3 && cookieSize<=0 && notifNr== 2)
   {
     Serial.println("Sorry, that might not be correct, try again");
+    notifNr = 2;
+    sysStatus = 3;
+    if(bInd != -1)
+     {
+       pauseInd = 0;
+       //0 for set, 1 for rollback, 2 for reset
+       switch(bInd)
+       {
+         case 0:
+           // wait for an input once more
+           sysStatus = state;
+           break;
+         case 1: 
+           sysStatus = state;
+           break;
+         case 2: 
+           sysStatus = 0;
+           notifNr = 0;
+           break;
+          
+        } 
+      }
   } else
+  {
   if(bInd != -1)
       {
         pauseInd = 0;
@@ -65,7 +88,7 @@ void WaitForInput(int state)
         }
         
       }
-   
+  }
 }
 // trying to overload
 void WaitForInput(int state,String message)
